@@ -33,8 +33,8 @@ class CarouselViewController: UIViewController {
         setupImageViews()
 
         setupPageControl()
-
     }
+
     override func viewWillAppear(_ animated: Bool) {
         // Set initial scroll position to center the first image
         DispatchQueue.main.async { [weak self] in
@@ -43,12 +43,12 @@ class CarouselViewController: UIViewController {
             self.zoomImageFor(self.viewModel.images.count/2)
         }
     }
+
     deinit {
         print("CarouselViewController Deinit Called")
     }
 
     private func setupScrolView() {
-        // Setup Scroll View
         scrollView.delegate = self
         scrollView.isPagingEnabled = false
         scrollView.showsHorizontalScrollIndicator = false
@@ -62,11 +62,9 @@ class CarouselViewController: UIViewController {
             scrollView.heightAnchor.constraint(equalToConstant: 350),
             scrollView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
-
     }
 
     private func setupPageControl() {
-        // Setup Page Control
         pageControl.numberOfPages = viewModel.images.count
         pageControl.currentPage = 0
         pageControl.translatesAutoresizingMaskIntoConstraints = false

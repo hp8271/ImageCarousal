@@ -8,19 +8,27 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet weak var clickMeButton: UIButton!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        setupClickMeButton()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    private func setupClickMeButton() {
         let attributedText = NSMutableAttributedString(
             string: "Click Me To see the Carousal",
             attributes: [
                 .font: UIFont.systemFont(ofSize: 16)
             ]
         )
-
+        
         attributedText.addAttributes(
             [
                 .font: UIFont.boldSystemFont(ofSize: 22)
@@ -33,17 +41,13 @@ class ViewController: UIViewController {
         self.clickMeButton.layer.borderWidth = 1
         self.clickMeButton.layer.cornerRadius = 8
     }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-
+    
     @IBAction func buttonClicked(_ sender: Any) {
         let viewModel = CarousalViewModel()
         let carousel = CarouselViewController(viewModel: viewModel)
         self.navigationController?.pushViewController(carousel, animated: false)
     }
-
+    
     deinit {
         print("Main ViewController deinitialised")
     }
